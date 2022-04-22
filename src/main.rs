@@ -65,12 +65,17 @@ fn main() {
     }
 
     let word = String::from("Rhogeあ森");
+    // 文字列を一文字ずつ取り出す
     for char in word.chars() {
         println!("{}", char);
     }
+    // 文字列を一バイトずつ取り出す
     for byte in word.bytes() {
         println!("{:x}", byte);
     }
+    // 文字列から特定の位置の文字を取り出す
+    println!("6文字目: {}", word.chars().nth(5).unwrap().to_string());
+    println!("2文字目: {}", word.chars().nth(1).unwrap().to_string());
 
     // 構造体
     let mut user1 = User {
@@ -82,11 +87,12 @@ fn main() {
 
     // HashMap
     let mut hoge_map: HashMap<&str, i32> = HashMap::new();
-    hoge_map.insert("A", 1);
+    hoge_map.insert("A", 1); // HashMapへの要素の追加
     hoge_map.insert("B", 2);
     println!("{:?}", hoge_map);
-    println!("{:?}", hoge_map.get("B"));
+    println!("{:?}", hoge_map.get("B")); // HashMapからの要素の取り出し
     println!("{:?}", hoge_map.get("C"));
+    // getはOption型を返す
     match hoge_map.get("B") {
         Some(v) => println!("B={}", v),
         None => println!("B=None!"),
