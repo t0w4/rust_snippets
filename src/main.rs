@@ -103,6 +103,10 @@ fn main() {
     // 文字列の置換
     let replace_word = "東京特許許可局";
     println!("{} => {}", replace_word, replace_word.replace("特許許可局", "タワー"));
+    // 文字列を分割
+    let split_word = "a,b,c,d,e";
+    let splited_vec: Vec<&str> = split_word.split(',').collect();
+    println!("splited vec: {:?}", splited_vec);
 
     // 構造体
     let mut user1 = User {
