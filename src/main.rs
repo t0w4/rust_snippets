@@ -88,6 +88,21 @@ fn main() {
     let sub2_tmp: Vec<char> = word_all.chars().collect();
     let sub2: String = (&sub2_tmp[1..3]).iter().collect();
     println!("文字列: {}, 部分文字列(2~3文字): {}", word_all, sub2);
+    // 部分文字列の検索
+    let word_find = String::from("あいうえお");
+    let finded_word: &str = "いう";
+    match word_find.find(finded_word) {
+        Some(i) => println!("[{}] {} found on {} byte", word_find, finded_word, i),
+        None => println!("[{}] {} is not found", word_find, finded_word)
+    };
+    let not_finded_word: &str = "かき";
+    match word_find.find(not_finded_word) {
+        Some(i) => println!("[{}] {} found on {} byte", word_find, not_finded_word, i),
+        None => println!("[{}] {} is not found", word_find, not_finded_word),
+    };
+    // 文字列の置換
+    let replace_word = "東京特許許可局";
+    println!("{} => {}", replace_word, replace_word.replace("特許許可局", "タワー"));
 
     // 構造体
     let mut user1 = User {
