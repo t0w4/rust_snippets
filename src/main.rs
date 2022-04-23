@@ -77,6 +77,18 @@ fn main() {
     println!("6文字目: {}", word.chars().nth(5).unwrap().to_string());
     println!("2文字目: {}", word.chars().nth(1).unwrap().to_string());
 
+    let word_all = String::from("あ意Uえ尾");
+    // 文字数の取得
+    println!("文字列: {}, 文字数: {}", word_all, word_all.chars().count());
+    // 部分文字列の取得
+    // 先頭の数文字
+    let sub1: String = word_all.chars().take(2).collect();
+    println!("文字列: {}, 部分文字列(最初の2文字): {}", word_all, sub1);
+    // 途中の文字の取得
+    let sub2_tmp: Vec<char> = word_all.chars().collect();
+    let sub2: String = (&sub2_tmp[1..3]).iter().collect();
+    println!("文字列: {}, 部分文字列(2~3文字): {}", word_all, sub2);
+
     // 構造体
     let mut user1 = User {
         name: String::from("bob"),
