@@ -93,7 +93,7 @@ fn main() {
     let finded_word: &str = "いう";
     match word_find.find(finded_word) {
         Some(i) => println!("[{}] {} found on {} byte", word_find, finded_word, i),
-        None => println!("[{}] {} is not found", word_find, finded_word)
+        None => println!("[{}] {} is not found", word_find, finded_word),
     };
     let not_finded_word: &str = "かき";
     match word_find.find(not_finded_word) {
@@ -102,7 +102,11 @@ fn main() {
     };
     // 文字列の置換
     let replace_word = "東京特許許可局";
-    println!("{} => {}", replace_word, replace_word.replace("特許許可局", "タワー"));
+    println!(
+        "{} => {}",
+        replace_word,
+        replace_word.replace("特許許可局", "タワー")
+    );
     // 文字列を分割
     let split_word = "a,b,c,d,e";
     let splited_vec: Vec<&str> = split_word.split(',').collect();
