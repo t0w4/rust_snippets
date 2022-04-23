@@ -24,9 +24,40 @@ fn call_user_name_and_age(user: User) {
     println!("I'm {}, {}", user.name, user.age);
 }
 
+fn add(a: i32, b: i32) -> i32 {
+    a + b
+}
+
+#[test]
+fn add_test1() {
+    assert!(add(1, 2) == 3);
+}
+#[test]
+fn add_test2() {
+    assert_eq!(add(2, 4), 6);
+}
+#[test]
+fn add_test3() {
+    assert_ne!(add(3, 6), 8);
+}
+
+#[derive(PartialEq, Debug)] // 構造体の比較に必要
 struct User {
     name: String,
     age: i32,
+}
+
+#[test]
+fn assert_struct() {
+    let user1 = User {
+        name: String::from("bob"),
+        age: 12,
+    };
+    let user2 = User {
+        name: "bob".to_string(),
+        age: 12,
+    };
+    assert_eq!(user1, user2);
 }
 
 fn main() {
@@ -63,6 +94,7 @@ fn main() {
         change_name(&mut name_change); // 変数の定義で mut をつけていたとしても呼び出しの際に mut が必要
         println!("{}", name_change)
     }
+    println!("{}", add(1, 2));
 
     let word = String::from("Rhogeあ森");
     // 文字列を一文字ずつ取り出す
