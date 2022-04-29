@@ -20,7 +20,7 @@ fn change_name(name: &mut String) {
     *name = format!("{} {}", *name, String::from("sun")) // format!マクロの方が楽
 }
 
-fn call_user_name_and_age(user: User) {
+fn call_user_name_and_age(user: &User) {
     println!("I'm {}, {}", user.name, user.age);
 }
 
@@ -45,6 +45,15 @@ fn add_test3() {
 struct User {
     name: String,
     age: i32,
+}
+
+impl User {
+    fn new(name: String, age: i32) -> Self {
+        User { name, age }
+    }
+    fn greet(&self, word: &str) {
+        println!("I'm {}, {} old. {}!", self.name, self.age, word)
+    }
 }
 
 #[test]
@@ -150,7 +159,15 @@ fn main() {
         age: 15,
     };
     user1.age = 12;
-    call_user_name_and_age(user1);
+    call_user_name_and_age(&user1);
+    let user2 = User::new(String::from("jon"), 21);
+    // メソッド呼び出し
+    user2.greet("hello!");
+    let user3 = User {
+        name: String::from("alice"),
+        ..user2 // 指定した要素以外コピー
+    };
+    user3.greet("good night!");
 
     // HashMap
     let mut hoge_map: HashMap<&str, i32> = HashMap::new();
