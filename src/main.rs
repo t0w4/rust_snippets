@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::{collections::HashMap, fmt};
 
 fn hello(name: String) {
     println!("hello {}!", name);
@@ -67,6 +67,50 @@ fn assert_struct() {
         age: 12,
     };
     assert_eq!(user1, user2);
+}
+
+#[derive(Clone, Copy)]
+enum Suit {
+    Spade,
+    Club,
+    Diamond,
+    Heart,
+}
+impl fmt::Display for Suit {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Suit::Spade => write!(f, "Heart"),
+            Suit::Club => write!(f, "Club"),
+            Suit::Diamond => write!(f, "Diamond"),
+            Suit::Heart => write!(f, "Heart"),
+        }
+    }
+}
+
+trait Card {
+    fn new(suit: Suit) -> Self;
+    fn number(&self) -> u8;
+    fn suit(&self) -> Suit;
+}
+
+fn print_card_detail<T: Card>(card: T) {
+    println!("this card is {}'s {}", card.suit(), card.number())
+}
+
+struct King {
+    suit: Suit,
+}
+
+impl Card for King {
+    fn new(suit: Suit) -> Self {
+        Self { suit }
+    }
+    fn number(&self) -> u8 {
+        13
+    }
+    fn suit(&self) -> Suit {
+        self.suit
+    }
 }
 
 fn main() {
@@ -239,6 +283,15 @@ fn main() {
     // タプル
     let tuple_test: (i32, String, i32) = (12, String::from("bob"), 23);
     println!("{} {} {}", tuple_test.0, tuple_test.1, tuple_test.2);
+
+    let king_s = King::new(Suit::Spade);
+    let king_c = King::new(Suit::Club);
+    let king_d = King::new(Suit::Diamond);
+    let king_h = King::new(Suit::Heart);
+    print_card_detail(king_s);
+    print_card_detail(king_c);
+    print_card_detail(king_d);
+    print_card_detail(king_h);
 }
 
 fn print_array(arr: [i32; 5]) {
